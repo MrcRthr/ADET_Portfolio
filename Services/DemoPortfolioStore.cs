@@ -7,7 +7,7 @@ public class DemoPortfolioStore : IPortfolioStore
     private readonly TeamInfo _team = new()
     {
         Name = "GROUP 6",                                   // EDIT
-        Tagline = "lagay kayo dito",
+        Tagline = "Three BSCS students from PUP Manila building for the web, one commit at a time.",
         Course = "BSCS",
         School = "PUP Manila",
         Email = "group@example.com",                           // EDIT
