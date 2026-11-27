@@ -19,12 +19,16 @@ public class DemoPortfolioStore : IPortfolioStore
         new Member
         {
             Id = 1, FullName = "Marc Arthur Gabalfin", CardName = "MARC ARTHUR", Nickname = "Art",
-            Role = "Leader · Front-end", Tagline = "lagay kayo dito",
-            FunFact = "lagay kayo dito",
-            Email = "marcgabalfin@gmail.com",                          // EDIT
+            Role = "Leader · Front-end", Tagline = "Pixel-pusher and popcorn enthusiast.",
+            FunFact = "Can't write a single line of CSS without snacks nearby.",
+            Email = "marcgabalfin@gmail.com",
+            GitHubUrl = "https://github.com/MrcRthr",
             Contributions =
             [
-                "lagay kayo dito"
+                "Set up the ASP.NET Core MVC project and GitHub repository",
+                "Built the Home page and shared site layout",
+                "Designed the navigation, footer, and overall styling",
+                "Wrote the project README"
             ],
             AccentColor = "#72d8ec", LabelColor = "#7ff4c3", Tilt = 10, InfoSide = "left",
             CardImage = "~/images/team/art-card.jpeg", ProfileImage = "~/images/team/art-profile.jpeg",
