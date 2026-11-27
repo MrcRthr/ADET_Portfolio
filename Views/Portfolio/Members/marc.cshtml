@@ -1,7 +1,96 @@
 @model Portfolio.ViewModels.PortfolioPageVm
-@* marc's portfolio. Build it here, on branch portfolio/marc. *@
 @{
     ViewData["Title"] = Model.Member.FullName;
+
+    const string Nickname = "Art";
+    const string GitHubUrl = "https://github.com/MrcRthr";
+
+    var skills = new[]
+    {
+        ("HTML", "#f49c7f"), ("CSS", "#72d8ec"), ("JavaScript", "#f4d97f"), ("C#", "#bd7ff4"),
+        ("ASP.NET Core MVC", "#92f47f"), ("Git", "#f34b4b"), ("GitHub", "#a9adad"), ("VS Code", "#7fb8f4")
+    };
+
+    var contacts = new[]
+    {
+        ("EMAIL",  "#7ff4c3", -4, Model.Member.Email, $"mailto:{Model.Member.Email}"),
+        ("GITHUB", "#72d8ec",  5, "MrcRthr", GitHubUrl)
+    };
 }
 
-<h1>@Model.Member.FullName</h1>
+@section Styles {
+    <script>document.documentElement.classList.add("marc-js");</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400..700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="~/marc/marc.css" asp-append-version="true" />
+}
+
+<div class="marc-progress" aria-hidden="true"></div>
+
+<div class="marc-ripples" aria-hidden="true">
+    <span></span><span></span><span></span><span></span>
+</div>
+
+<div class="marc-page">
+
+    <section class="marc-hero" data-marc-hero>
+        <div class="marc-hero-text">
+            <p class="marc-kicker">BSCS · PUP Manila</p>
+            <h1>HI, I'M <span>@Nickname.ToUpper()!</span></h1>
+            <p class="marc-lead">Pixel-pusher and popcorn enthusiast. I build for the web, one commit at a time.</p>
+        </div>
+
+        <figure class="marc-card">
+            <img src="~/marc/img/art-card.jpeg" alt="@Model.Member.FullName" />
+            <figcaption class="marc-card-label">MARC ARTHUR</figcaption>
+        </figure>
+
+        <p class="marc-scroll-hint" aria-hidden="true">scroll <span>↓</span></p>
+    </section>
+
+    <section class="marc-about marc-reveal" aria-labelledby="marc-about-title">
+        <div class="marc-polaroid">
+            <img src="~/marc/img/art-card.jpeg" alt="" />
+        </div>
+        <div class="marc-about-body">
+            <h2 id="marc-about-title">@Model.Member.FullName</h2>
+            <p class="marc-role">"@Nickname" · BSCS Student · Front-end</p>
+            <p>Can't write a single line of CSS without snacks nearby.</p>
+        </div>
+    </section>
+
+    <section class="marc-skills" aria-labelledby="marc-skills-title">
+        <h2 id="marc-skills-title" class="marc-heading marc-reveal">WHAT I USE</h2>
+        <ul class="marc-pills">
+            @for (var i = 0; i < skills.Length; i++)
+            {
+                <li class="marc-pill marc-reveal" style="--label: @skills[i].Item2; --i: @i">@skills[i].Item1</li>
+            }
+        </ul>
+    </section>
+
+    <section class="marc-contact" aria-labelledby="marc-contact-title">
+        <h2 id="marc-contact-title" class="marc-heading marc-reveal">SAY HI!</h2>
+        <ul class="marc-contacts">
+            @for (var i = 0; i < contacts.Length; i++)
+            {
+                var (label, color, tilt, text, href) = contacts[i];
+                <li class="marc-reveal" style="--label: @color; --tilt: @(tilt)deg; --i: @i">
+                    <a class="marc-contact-card" href="@href"
+                       target="@(href.StartsWith("http") ? "_blank" : null)"
+                       rel="@(href.StartsWith("http") ? "noopener" : null)">
+                        <span class="marc-contact-label">@label</span>
+                        <span class="marc-contact-value">@text</span>
+                        <span class="marc-contact-arrow" aria-hidden="true">↗</span>
+                    </a>
+                </li>
+            }
+        </ul>
+    </section>
+
+</div>
+
+@section Scripts {
+    <script src="~/marc/marc.js" asp-append-version="true"></script>
+}
