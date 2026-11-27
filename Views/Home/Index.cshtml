@@ -1,16 +1,12 @@
 @model Portfolio.ViewModels.HomePageVm
 @{
-    ViewData["Title"] = "Home";
+    ViewData["Title"] = "Group 6";
 }
 
-<section class="page-intro hero">
-    <h2>HETO NA KAMI!</h2>
-    <p>@Model.Team.Tagline</p>
-    <div class="pill-links">
-        @foreach (var m in Model.Members)
-        {
-            <a class="pill" style="--label: @m.LabelColor"
-               asp-controller="Portfolio" asp-action="Show" asp-route-slug="@m.Slug">@m.FullName</a>
-        }
-    </div>
-</section>
+<h1>Group 6</h1>
+<ul>
+    @foreach (var m in Model.Members)
+    {
+        <li><a asp-controller="Portfolio" asp-action="Show" asp-route-slug="@m.Slug">@m.FullName</a></li>
+    }
+</ul>

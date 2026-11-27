@@ -1,20 +1,7 @@
 @model Portfolio.ViewModels.PortfolioPageVm
-@*
-    member2's personal portfolio. Build it here, on branch portfolio/member2.
-    Your files:  this page, wwwroot/css/portfolio/member2.css, wwwroot/images/portfolio/member2/
-*@
+@* member2's portfolio. Build it here, on branch portfolio/member2. *@
 @{
-    var me = Model.Member;
-    ViewData["Title"] = me.FullName;
+    ViewData["Title"] = Model.Member.FullName;
 }
 
-@section Styles {
-    <link rel="stylesheet" href="~/css/portfolio/member2.css" asp-append-version="true" />
-}
-
-<article class="pf--member2" style="--accent: @me.AccentColor; --label: @me.LabelColor">
-    <section class="page-intro">
-        <h2>@me.FullName</h2>
-        <p>lagay kayo dito</p>
-    </section>
-</article>
+<h1>@Model.Member.FullName</h1>

@@ -4,22 +4,12 @@ using Portfolio.ViewModels;
 
 namespace Portfolio.Controllers;
 
-// Personal portfolios.
-// Shared base: this controller, Views/Portfolio/Index.cshtml, css/portfolio.css.
-// Each member owns ONLY their own files:
-//   Views/Portfolio/Members/{slug}.cshtml
-//   wwwroot/css/portfolio/{slug}.css
-//   wwwroot/images/portfolio/{slug}/
+// Each member's page lives in Views/Portfolio/Members/{slug}.cshtml
 public class PortfolioController : Controller
 {
     private readonly IPortfolioStore _store;
 
     public PortfolioController(IPortfolioStore store) => _store = store;
-
-    // GET /portfolio
-    [Route("portfolio")]
-    public IActionResult Index()
-        => View(new PortfolioListVm { Members = _store.GetMembers() });
 
     // GET /portfolio/{slug}
     [Route("portfolio/{slug}")]

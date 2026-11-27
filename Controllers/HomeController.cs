@@ -14,11 +14,7 @@ public class HomeController : Controller
     public HomeController(IPortfolioStore store) => _store = store;
 
     // GET Home
-    public IActionResult Index() => View(new HomePageVm
-    {
-        Team = _store.GetTeam(),
-        Members = _store.GetMembers()
-    });
+    public IActionResult Index() => View(new HomePageVm { Members = _store.GetMembers() });
 
     // Error
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
