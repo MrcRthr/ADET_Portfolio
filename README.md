@@ -43,7 +43,7 @@ The site opens in your browser and reloads when you save changes.
 
 ## Team workflow
 
-Each member builds their portfolio on their own branch and merges it into `main` with a pull request. See [GIT-WORKFLOW.md](GIT-WORKFLOW.md).
+Each member builds their portfolio on their own branch (`portfolio/<name>`) and merges it into `main` with a pull request.
 
 ## Members
 
