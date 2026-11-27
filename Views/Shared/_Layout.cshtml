@@ -1,0 +1,61 @@
+@inject Portfolio.Services.IPortfolioStore Store
+@functions {
+    // Active nav
+    string NavClass(string controller) =>
+        string.Equals(ViewContext.RouteData.Values["controller"]?.ToString(), controller,
+                      StringComparison.OrdinalIgnoreCase) ? "active" : "";
+}
+@{
+    var team = Store.GetTeam();
+    var credits = string.Join(", ", Store.GetMembers().Select(m => m.FullName));
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] · @team.Name</title>
+    <script type="importmap"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    @* Page styles *@
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body>
+    <div class="ripple-background" aria-hidden="true">
+        <span class="ripple ripple--xxl"></span>
+        <span class="ripple ripple--xl"></span>
+        <span class="ripple ripple--l"></span>
+        <span class="ripple ripple--m"></span>
+        <span class="ripple ripple--s"></span>
+    </div>
+
+    <header class="site-header">
+        <a class="site-brand" asp-controller="Home" asp-action="Index">@team.Name</a>
+        <nav class="site-nav" aria-label="Main">
+            <ul>
+                <li><a class="@NavClass("Home")" asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a class="@NavClass("Team")" asp-controller="Team" asp-action="Index">Team</a></li>
+                <li><a class="@NavClass("Skills")" asp-controller="Skills" asp-action="Index">Skills</a></li>
+                <li><a class="@NavClass("Contact")" asp-controller="Contact" asp-action="Index">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        @RenderBody()
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; @DateTime.Now.Year @team.Name · @team.Course, @team.School</p>
+        <p>Built with ASP.NET Core MVC by <span class="site-credits">@credits</span></p>
+    </footer>
+
+    @* Page scripts *@
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

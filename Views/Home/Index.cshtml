@@ -1,0 +1,91 @@
+@model Portfolio.ViewModels.HomePageVm
+@{
+    ViewData["Title"] = "Home";
+    var project = Model.Project;
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
+}
+
+<section class="page-intro hero">
+    <h2>HETO NA KAMI!</h2>
+    <p>@Model.Team.Tagline</p>
+    <div class="pill-links">
+        <a class="pill" style="--label: #7ff4c3" asp-controller="Team" asp-action="Index">Meet the team</a>
+        <a class="pill" style="--label: #bd7ff4" asp-controller="Skills" asp-action="Index">What we can do</a>
+        <a class="pill" style="--label: #f47f96" asp-controller="Contact" asp-action="Index">Say hi</a>
+    </div>
+</section>
+
+<section class="team-cards" aria-label="Team members">
+    @foreach (var m in Model.Members)
+    {
+        <a class="teammate" asp-controller="Team" asp-action="Details" asp-route-id="@m.Id"
+           style="--accent: @m.AccentColor; --label: @m.LabelColor; --tilt: @(m.Tilt)deg">
+            <div class="teammate-photo">
+                <img src="@Url.Content(m.CardImage)" alt="@m.FullName" />
+            </div>
+
+            <div class="teammate-label teammate-label--@m.InfoSide">
+                @m.CardName
+                <p class="teammate-role">@m.Role</p>
+            </div>
+
+            @if (m.HasProp)
+            {
+                <img class="teammate-prop prop--@m.PropName @(m.PropSpins ? "teammate-prop--spin" : "")"
+                     src="@Url.Content(m.PropImage)" alt="" />
+            }
+        </a>
+    }
+</section>
+
+<section class="featured" aria-labelledby="featured-title">
+    <div class="page-intro featured-intro">
+        <h2 id="featured-title">FEATURED PROJECT</h2>
+        <p>Ang pinagmulan ng style ng portfolio na ito.</p>
+    </div>
+
+    @* Project note *@
+    <div class="note-board featured-board">
+        <article class="note project-card">
+            <p class="project-year">@project.Year</p>
+            <h3 class="project-title">@project.Title</h3>
+            <p class="project-summary">@project.Summary</p>
+            <ul class="tech-list" aria-label="Built with">
+                @foreach (var tech in project.TechStack)
+                {
+                    <li>@tech</li>
+                }
+            </ul>
+
+            <div class="note-body" aria-live="polite">
+                <p class="note-meta" data-note-meta></p>
+                <p class="note-text" data-note-text>Pindutin ang isang screenshot!</p>
+            </div>
+
+            <p class="project-credits">@project.Credits</p>
+            @if (!string.IsNullOrWhiteSpace(project.RepoUrl))
+            {
+                <a class="pill" style="--label: #f4d97f" href="@project.RepoUrl" target="_blank" rel="noopener">View the code</a>
+            }
+        </article>
+
+        <div class="tiles tiles--2">
+            @foreach (var shot in project.Shots)
+            {
+                <button type="button" class="tile" aria-pressed="false"
+                        style="--label: @shot.LabelColor; --tilt: @(shot.Tilt)deg"
+                        data-meta="@shot.Title" data-text="@shot.Caption">
+                    <img src="@Url.Content(shot.Image)" alt="@shot.ImageAlt" />
+                    <span class="tile-label">@shot.Title</span>
+                </button>
+            }
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/js/notes.js" asp-append-version="true"></script>
+}

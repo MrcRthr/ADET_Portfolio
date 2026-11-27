@@ -1,0 +1,94 @@
+@model Portfolio.ViewModels.TeamPageVm
+@{
+    var selected = Model.Selected;
+    var isOpen = selected is not null;
+    ViewData["Title"] = isOpen ? selected!.FullName : "Team";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/team.css" asp-append-version="true" />
+}
+
+<section class="team-page">
+    <div class="team-text">
+        <div class="page-intro">
+            <h2>SINO BA KAMI?</h2>
+            <p>Kilalanin ang tatlong nasa likod ng portfolio na ito.</p>
+        </div>
+
+        <div class="roster @(isOpen ? "is-open" : "")">
+            <button type="button" id="roster-toggle" class="roster-button"
+                    aria-expanded="@(isOpen ? "true" : "false")" aria-controls="roster-panel">
+                @(isOpen ? "Hide the team" : "Meet the team")
+            </button>
+
+            <div class="roster-panel" id="roster-panel">
+                <nav class="face-picker" aria-label="Choose a member">
+                    @foreach (var m in Model.Members)
+                    {
+                        var isCurrent = m.Id == selected?.Id;
+                        <a class="face @(isCurrent ? "is-current" : "")"
+                           asp-action="Details" asp-route-id="@m.Id"
+                           title="@m.Nickname" aria-label="@m.FullName"
+                           aria-current="@(isCurrent ? "page" : "false")"
+                           style="--accent: @m.AccentColor">
+                            <img src="@Url.Content(m.CardImage)" alt="" />
+                        </a>
+                    }
+                </nav>
+
+                @if (selected is not null)
+                {
+                    <article class="profile" style="--accent: @selected.AccentColor">
+                        <div class="profile-photo">
+                            <img src="@Url.Content(selected.ProfileImage)" alt="@selected.FullName" />
+                        </div>
+                        <div class="profile-body">
+                            <h3 class="profile-name">@selected.FullName</h3>
+                            <p class="profile-role">"@selected.Nickname" · @selected.Role · @selected.Course</p>
+                            <p class="profile-fact">@selected.FunFact</p>
+
+                            <h4 class="profile-heading">Sa project na ito</h4>
+                            <ul class="profile-work">
+                                @foreach (var item in selected.Contributions)
+                                {
+                                    <li>@item</li>
+                                }
+                            </ul>
+
+                            <p class="profile-links">
+                                <a href="mailto:@selected.Email">@selected.Email</a>
+                                @if (!string.IsNullOrWhiteSpace(selected.GitHubUrl))
+                                {
+                                    <a href="@selected.GitHubUrl" target="_blank" rel="noopener">GitHub</a>
+                                }
+                            </p>
+                        </div>
+                    </article>
+                }
+                else
+                {
+                    <p class="roster-hint">Click Us! 👆</p>
+                }
+            </div>
+        </div>
+    </div>
+
+    @* Member box *@
+    <div class="member-box @(isOpen ? "is-filled" : "")"
+         style="--accent: @(selected?.AccentColor ?? "#000")">
+        @if (selected is not null)
+        {
+            <img class="member-box-photo" src="@Url.Content(selected.BoxPhoto)" alt="@selected.FullName" />
+            <span class="member-box-label">@selected.Nickname</span>
+        }
+        else
+        {
+            <span class="member-box-empty">?</span>
+        }
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/js/team.js" asp-append-version="true"></script>
+}

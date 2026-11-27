@@ -1,0 +1,218 @@
+/* Contact */
+
+.contact {
+  display: grid;
+  grid-template-columns: minmax(0, 560px) 260px;
+  justify-content: center;
+  align-items: start;
+  gap: 5rem;
+  padding: 0 8%;
+}
+
+/* Form */
+
+.contact-success {
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius);
+  background: #b3fc5b;
+  font-weight: 500;
+  animation: notePop 0.4s ease-out;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 2rem;
+  border-radius: var(--radius);
+  background: #010101;
+  color: #fff;
+  rotate: -1deg;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.18);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.field label {
+  font-weight: 500;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 3px solid transparent;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+  resize: vertical;
+  transition: border-color 0.2s ease;
+}
+
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: #72d8ec;
+}
+
+/* Validation */
+.field .input-validation-error {
+  border-color: var(--note);
+}
+
+.field-error {
+  color: #ff9b9b;
+  font-size: 0.9rem;
+}
+
+.form-errors ul {
+  list-style: none;
+  color: #ff9b9b;
+}
+
+.send-button {
+  align-self: flex-start;
+  padding: 0.9rem 1.6rem;
+  border: 0;
+  border-radius: 200px;
+  background: #b3fc5b;
+  color: var(--ink);
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.send-button:hover {
+  background: rgb(237, 151, 64);
+  transform: translateY(-3px);
+}
+
+/* Stickers */
+
+.contact-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.sticker-loop {
+  position: relative;
+  width: 200px;
+  aspect-ratio: 1;
+  margin-top: 2.5rem;
+}
+
+/* Sticker loop */
+.sticker {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0);
+  animation: popLoop calc(var(--count) * 3s) infinite;
+  animation-delay: calc(var(--i) * 3s);
+}
+
+.sticker img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 20%;
+}
+
+.sticker-name {
+  position: absolute;
+  bottom: 105%;
+  left: 50%;
+  padding: 6px 12px;
+  transform: translateX(-50%);
+  border-radius: 4px;
+  background: #b8f0b0;
+  color: #373333;
+  font-size: 20px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.sticker:hover .sticker-name {
+  opacity: 1;
+}
+
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  list-style: none;
+}
+
+.contact-list li {
+  display: flex;
+  flex-direction: column;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  background: var(--label);
+}
+
+.contact-list li:nth-child(odd)  { rotate: -1.5deg; }
+.contact-list li:nth-child(even) { rotate: 1.5deg; }
+
+.contact-name {
+  font-weight: 600;
+}
+
+.contact-list a {
+  color: var(--ink);
+  font-size: 0.9rem;
+  word-break: break-all;
+}
+
+/* Responsive */
+
+@media (max-width: 860px) {
+  .contact {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding: 0;
+  }
+
+  .contact-form {
+    rotate: 0deg;
+    padding: 1.5rem;
+  }
+
+  .sticker-loop {
+    width: 160px;
+    margin-top: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sticker:first-child {
+    animation: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+}
+
+/* Animations */
+
+@keyframes popLoop {
+  0%   { opacity: 0; visibility: hidden;  transform: scale(0); }
+  5%   { opacity: 1; visibility: visible; transform: scale(1.15); }
+  10%  { transform: scale(1); }
+  30%  { opacity: 1; visibility: visible; transform: scale(1); }
+  33%  { opacity: 0; visibility: hidden;  transform: scale(0); }
+  100% { opacity: 0; visibility: hidden;  transform: scale(0); }
+}

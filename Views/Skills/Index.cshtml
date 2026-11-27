@@ -1,0 +1,48 @@
+@model Portfolio.ViewModels.SkillsPageVm
+@{
+    ViewData["Title"] = "Skills";
+    var categories = Model.Skills.Select(s => s.Category).Distinct();
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/skills.css" asp-append-version="true" />
+}
+
+<section class="page-intro">
+    <h2>ANO'NG KAYA NAMIN?</h2>
+    <p>The languages, frameworks and tools we used to build this portfolio. Pindutin ang isa para makita kung saan namin ginamit.</p>
+</section>
+
+<section class="note-board skills-board">
+    <aside class="note" aria-live="polite">
+        <div class="note-body">
+            <p class="note-meta" data-note-meta></p>
+            <p class="note-text" data-note-text>PINDOT!</p>
+        </div>
+    </aside>
+
+    <div class="skill-groups">
+        @foreach (var category in categories)
+        {
+            <div class="skill-group">
+                <h3 class="skill-group-title">@(category)s</h3>
+                <div class="tiles">
+                    @foreach (var skill in Model.Skills.Where(s => s.Category == category))
+                    {
+                        var who = Model.WhoUsed(skill);
+                        <button type="button" class="tile skill-tile" aria-pressed="false"
+                                style="--label: @skill.LabelColor; --tilt: @(skill.Tilt)deg"
+                                data-meta="@skill.Name · @who" data-text="@skill.UsedFor">
+                            <span class="skill-name">@skill.Name</span>
+                            <span class="skill-who">@who</span>
+                        </button>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/js/notes.js" asp-append-version="true"></script>
+}

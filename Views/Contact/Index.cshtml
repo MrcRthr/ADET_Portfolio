@@ -1,0 +1,70 @@
+@model Portfolio.ViewModels.ContactVm
+@{
+    ViewData["Title"] = "Contact";
+    var members = (IReadOnlyList<Portfolio.Models.Member>)ViewBag.Members;
+    var sentBy = TempData["SentBy"] as string;
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/contact.css" asp-append-version="true" />
+}
+
+<section class="page-intro">
+    <h2>TARA, USAP TAYO!</h2>
+    <p>May tanong, feedback o project idea? Send us a message.</p>
+</section>
+
+<section class="contact">
+    <div class="contact-form-wrap">
+        @if (sentBy is not null)
+        {
+            <p class="contact-success" role="status">Salamat, @sentBy! Natanggap namin ang message mo. 💌</p>
+        }
+
+        <form class="contact-form" asp-action="Index" method="post" novalidate>
+            <div asp-validation-summary="ModelOnly" class="form-errors"></div>
+
+            <div class="field">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" autocomplete="name" />
+                <span asp-validation-for="Name" class="field-error"></span>
+            </div>
+
+            <div class="field">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" autocomplete="email" />
+                <span asp-validation-for="Email" class="field-error"></span>
+            </div>
+
+            <div class="field">
+                <label asp-for="Message"></label>
+                <textarea asp-for="Message" rows="5"></textarea>
+                <span asp-validation-for="Message" class="field-error"></span>
+            </div>
+
+            <button type="submit" class="send-button">Send message</button>
+        </form>
+    </div>
+
+    <aside class="contact-side">
+        <div class="sticker-loop" aria-hidden="true">
+            @for (var i = 0; i < members.Count; i++)
+            {
+                <div class="sticker" style="--i: @i; --count: @members.Count">
+                    <img src="@Url.Content(members[i].StickerImage)" alt="" />
+                    <span class="sticker-name">@members[i].Nickname</span>
+                </div>
+            }
+        </div>
+
+        <ul class="contact-list">
+            @foreach (var m in members)
+            {
+                <li style="--label: @m.LabelColor">
+                    <span class="contact-name">@m.Nickname</span>
+                    <a href="mailto:@m.Email">@m.Email</a>
+                </li>
+            }
+        </ul>
+    </aside>
+</section>
