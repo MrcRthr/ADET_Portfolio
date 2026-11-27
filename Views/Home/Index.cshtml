@@ -1,12 +1,19 @@
 @model Portfolio.ViewModels.HomePageVm
 @{
-    ViewData["Title"] = "Group 6";
+    ViewData["Title"] = "Home";
 }
 
-<h1>Group 6</h1>
-<ul>
+<section class="intro">
+    <h1>Portfolio</h1>
+    <p>Three BSCS students, three portfolios. Each of us built our own page on our own branch. Pick one to look around.</p>
+</section>
+
+<section class="member-list" aria-label="Portfolios">
     @foreach (var m in Model.Members)
     {
-        <li><a asp-controller="Portfolio" asp-action="Show" asp-route-slug="@m.Slug">@m.FullName</a></li>
+        <a class="member-card" asp-controller="Portfolio" asp-action="Show" asp-route-slug="@m.Slug">
+            <span class="member-name">@m.FullName</span>
+            <span class="member-link">View portfolio &rarr;</span>
+        </a>
     }
-</ul>
+</section>

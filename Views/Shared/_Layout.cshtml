@@ -1,13 +1,32 @@
+@{
+    const string SiteName = "GABALFIN, SANCHEZ, MANAOG";
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"]</title>
+    <title>@ViewData["Title"] · @SiteName</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
-    @RenderBody()
+    <header class="site-header">
+        <a class="site-brand" asp-controller="Home" asp-action="Index">@SiteName</a>
+        <nav class="site-nav" aria-label="Main">
+            <a asp-controller="Home" asp-action="Index">Home</a>
+        </nav>
+    </header>
+
+    <main class="site-main">
+        @RenderBody()
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; @DateTime.Now.Year @SiteName · BSCS, PUP Manila</p>
+        <p>Built with ASP.NET Core MVC</p>
+    </footer>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

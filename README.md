@@ -1,6 +1,6 @@
-# Group 6 Portfolio
+# GABALFIN, SANCHEZ, MANAOG — Portfolio
 
-Personal portfolios of Group 6 (BSCS, PUP Manila), built with ASP.NET Core MVC.
+Personal portfolios of Gabalfin, Sanchez and Manaog (BSCS, PUP Manila), built with ASP.NET Core MVC.
 
 ## Pages
 
@@ -11,7 +11,7 @@ Personal portfolios of Group 6 (BSCS, PUP Manila), built with ASP.NET Core MVC.
 
 ## Team workflow
 
-`main` is a blank starting point with no design. Each member builds
+`main` is the shared base: a simple header, footer and home page (`wwwroot/css/site.css`). Each member builds
 their portfolio from scratch on their own branch and merges it into `main` with a pull request.
 
 | Member               | Branch              | Your page |
