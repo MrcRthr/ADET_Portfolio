@@ -11,7 +11,7 @@ public class DemoPortfolioStore : IPortfolioStore
         Course = "BSCS",
         School = "PUP Manila",
         Email = "group@example.com",                           // EDIT
-        GitHubUrl = ""                                          // EDIT
+        GitHubUrl = "https://github.com/MrcRthr/Group6-ADET"
     };
 
     private readonly List<Member> _members =
