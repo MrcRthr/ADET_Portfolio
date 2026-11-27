@@ -18,7 +18,7 @@ public class DemoPortfolioStore : IPortfolioStore
     [
         new Member
         {
-            Id = 1, FullName = "Marc Arthur Gabalfin", CardName = "MARC ARTHUR", Nickname = "Art",
+            Id = 1, Slug = "marc", FullName = "Marc Arthur Gabalfin", CardName = "MARC ARTHUR", Nickname = "Art",
             Role = "Leader · Front-end", Tagline = "Pixel-pusher and popcorn enthusiast.",
             FunFact = "Can't write a single line of CSS without snacks nearby.",
             Email = "marcgabalfin@gmail.com",
@@ -37,7 +37,7 @@ public class DemoPortfolioStore : IPortfolioStore
         },
         new Member
         {
-            Id = 2, FullName = "Member 2", CardName = "MEMBER TWO", Nickname = "Two",   // EDIT
+            Id = 2, Slug = "member2", FullName = "Member 2", CardName = "MEMBER TWO", Nickname = "Two",   // EDIT
             Role = "Team page", Tagline = "lagay kayo dito",                                // EDIT
             FunFact = "lagay kayo dito",                                           // EDIT
             Email = "member2@example.com",                                                // EDIT
@@ -51,7 +51,7 @@ public class DemoPortfolioStore : IPortfolioStore
         },
         new Member
         {
-            Id = 3, FullName = "Member 3", CardName = "MEMBER THREE", Nickname = "Three", // EDIT
+            Id = 3, Slug = "member3", FullName = "Member 3", CardName = "MEMBER THREE", Nickname = "Three", // EDIT
             Role = "Skills · Contact", Tagline = "lagay kayo dito",                           // EDIT
             FunFact = "lagay kayo dito",                                             // EDIT
             Email = "member3@example.com",                                                  // EDIT
@@ -127,6 +127,8 @@ public class DemoPortfolioStore : IPortfolioStore
     public TeamInfo GetTeam() => _team;
     public IReadOnlyList<Member> GetMembers() => _members.AsReadOnly();
     public Member? FindMember(int id) => _members.FirstOrDefault(m => m.Id == id);
+    public Member? FindMemberBySlug(string slug) =>
+        _members.FirstOrDefault(m => string.Equals(m.Slug, slug, StringComparison.OrdinalIgnoreCase));
     public Project GetFeaturedProject() => _project;
     public IReadOnlyList<Skill> GetSkills() => _skills.AsReadOnly();
 }

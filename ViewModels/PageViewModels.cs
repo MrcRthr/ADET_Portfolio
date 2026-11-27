@@ -18,6 +18,18 @@ public class TeamPageVm
     public Member? Selected { get; set; }
 }
 
+// Portfolios
+public class PortfolioListVm
+{
+    public IReadOnlyList<Member> Members { get; set; } = [];
+}
+
+// One member's personal portfolio
+public class PortfolioPageVm
+{
+    public Member Member { get; set; } = new();
+}
+
 // Skills
 public class SkillsPageVm
 {

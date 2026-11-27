@@ -1,0 +1,130 @@
+/* Portfolios: shared base. Personal styles go in css/portfolio/{slug}.css */
+
+.portfolio-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2.5rem;
+  padding: 0 8% 4rem;
+}
+
+.portfolio-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1rem;
+  border: 4px solid var(--accent);
+  border-radius: var(--radius);
+  background: #fff;
+  color: var(--ink);
+  text-decoration: none;
+  rotate: var(--tilt);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.portfolio-card-photo {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: calc(var(--radius) - 4px);
+}
+
+.portfolio-card-name {
+  margin-top: 0.5rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.portfolio-card-role {
+  align-self: start;
+  padding: 0.2rem 0.7rem;
+  border-radius: 200px;
+  background: var(--label);
+  font-size: 0.9rem;
+}
+
+/* Starter layout every personal page can reuse (or override) */
+
+.pf {
+  display: grid;
+  gap: 3rem;
+  padding: 0 8% 4rem;
+}
+
+.pf-hero {
+  display: grid;
+  grid-template-columns: minmax(160px, 260px) 1fr;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.pf-hero img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: 5px solid var(--accent);
+  border-radius: 50%;
+}
+
+.pf-hero h2 {
+  font-size: clamp(2.2rem, 6vw, 50px);
+  line-height: 1.1;
+}
+
+.pf-hero p {
+  max-width: 60ch;
+  margin-top: 0.75rem;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.pf-section h3 {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 0.3rem 1rem;
+  border-radius: 200px;
+  background: var(--label);
+  font-size: 1.4rem;
+}
+
+.pf-section p,
+.pf-section li {
+  max-width: 65ch;
+  line-height: 1.6;
+}
+
+.pf-section ul {
+  padding-left: 1.2rem;
+}
+
+.pf-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.pf-tile {
+  padding: 1.2rem;
+  border: 3px solid var(--accent);
+  border-radius: var(--radius);
+}
+
+.pf-tile h4 {
+  margin-bottom: 0.4rem;
+}
+
+.pf-back {
+  color: var(--link);
+}
+
+@media (max-width: 640px) {
+  .pf-hero {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+}

@@ -8,6 +8,7 @@ A group portfolio website for Group 6 (BSCS, PUP Manila), built with ASP.NET Cor
 |---------|------------------------------------------------------|
 | Home    | Team intro, member cards, and the featured project   |
 | Team    | Each member's profile, fun fact, and contributions   |
+| Portfolios | Each member's personal portfolio (`/portfolio/<name>`) |
 | Skills  | Languages, frameworks, and tools we use              |
 | Contact | A contact form with validation                       |
 
@@ -39,6 +40,10 @@ dotnet watch
 ```
 
 The site opens in your browser and reloads when you save changes.
+
+## Team workflow
+
+Each member builds their portfolio on their own branch and merges it into `main` with a pull request. See [GIT-WORKFLOW.md](GIT-WORKFLOW.md).
 
 ## Members
 
