@@ -76,10 +76,14 @@
             @for (var i = 0; i < contacts.Length; i++)
             {
                 var (label, color, tilt, text, href) = contacts[i];
-                <li class="marc-contact-card marc-reveal" style="--label: @color; --tilt: @(tilt)deg; --i: @i">
-                    <span class="marc-contact-label">@label</span>
-                    <a href="@href" target="@(href.StartsWith("http") ? "_blank" : null)"
-                       rel="@(href.StartsWith("http") ? "noopener" : null)">@text</a>
+                <li class="marc-reveal" style="--label: @color; --tilt: @(tilt)deg; --i: @i">
+                    <a class="marc-contact-card" href="@href"
+                       target="@(href.StartsWith("http") ? "_blank" : null)"
+                       rel="@(href.StartsWith("http") ? "noopener" : null)">
+                        <span class="marc-contact-label">@label</span>
+                        <span class="marc-contact-value">@text</span>
+                        <span class="marc-contact-arrow" aria-hidden="true">↗</span>
+                    </a>
                 </li>
             }
         </ul>

@@ -126,8 +126,13 @@ a.marc-pill:hover {
 }
 
 .marc-hero h1 span {
+  display: inline-block;
   color: var(--marc-accent);
-  -webkit-text-stroke: 2px var(--marc-ink);
+  -webkit-text-stroke: 8px var(--marc-ink);
+  paint-order: stroke fill;
+  text-shadow: 6px 6px 0 var(--marc-ink);
+  letter-spacing: 0.03em;
+  rotate: -3deg;
 }
 
 .marc-lead {
@@ -243,9 +248,10 @@ a.marc-pill:hover {
 /* 4. Contact */
 
 .marc-contacts {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 3rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2.5rem;
+  max-width: 760px;
   margin: 0;
   padding: 1rem 0 0;
   list-style: none;
@@ -253,18 +259,25 @@ a.marc-pill:hover {
 
 .marc-contact-card {
   position: relative;
-  min-width: 260px;
-  padding: 2.25rem 1.5rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 2.4rem 1.5rem 1.6rem;
   border: 4px solid var(--label);
   border-radius: var(--marc-radius);
-  background: #fff;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+  background: #010101;
+  color: #fff;
+  text-decoration: none;
   rotate: var(--tilt);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+  transition: rotate 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
 }
 
-.marc-js .marc-contact-card.is-visible:hover {
-  transform: translateY(-6px) scale(1.04);
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.22);
+.marc-contact-card:hover,
+.marc-contact-card:focus-visible {
+  rotate: 0deg;
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.28);
 }
 
 .marc-contact-label {
@@ -272,17 +285,38 @@ a.marc-pill:hover {
   top: 0;
   left: -0.75rem;
   translate: 0 -50%;
-  padding: 0.6rem 1rem;
+  padding: 0.5rem 1rem;
   border-radius: 5px;
   background: var(--label);
+  color: var(--marc-ink);
   font-weight: 600;
+  letter-spacing: 0.05em;
+  rotate: -4deg;
 }
 
-.marc-contact-card a {
-  color: var(--marc-ink);
-  font-size: 1.2rem;
+.marc-contact-value {
+  flex: 1;
+  min-width: 0;
+  font-size: 1.15rem;
   font-weight: 500;
-  text-underline-offset: 4px;
+  overflow-wrap: anywhere;
+}
+
+.marc-contact-arrow {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: var(--label);
+  color: var(--marc-ink);
+  font-weight: 700;
+  transition: transform 0.35s ease;
+}
+
+.marc-contact-card:hover .marc-contact-arrow {
+  transform: rotate(45deg);
 }
 
 /* Tablets and phones */
@@ -321,6 +355,10 @@ a.marc-pill:hover {
   .marc-about-body {
     padding: 1.25rem;
   }
+
+  .marc-contacts {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Animations */
@@ -342,7 +380,9 @@ a.marc-pill:hover {
   }
 
   .marc-js .marc-reveal,
-  .marc-card {
+  .marc-card,
+  .marc-contact-card,
+  .marc-contact-arrow {
     transition: none;
     transform: none;
   }
