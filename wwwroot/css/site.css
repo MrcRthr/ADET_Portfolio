@@ -69,8 +69,16 @@ a:focus-visible {
   text-decoration: none;
 }
 
-.site-nav a:hover {
+.site-nav a:hover,
+.site-nav a.active {
   color: var(--ink);
+}
+
+.site-nav a.active {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
 }
 
 /* Main */
@@ -132,6 +140,38 @@ a:focus-visible {
 .member-link {
   color: var(--accent);
   font-size: 0.95rem;
+}
+
+/* About */
+
+.content-block {
+  margin-top: 2.5rem;
+  padding: 1.5rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.content-block h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+}
+
+.content-block p {
+  max-width: 65ch;
+  margin: 0;
+}
+
+.plain-list {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+code {
+  padding: 0.1rem 0.35rem;
+  background: #f0f0f2;
+  border-radius: 4px;
+  font-size: 0.9em;
 }
 
 /* Footer */

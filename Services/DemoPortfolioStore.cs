@@ -6,9 +6,9 @@ public class DemoPortfolioStore : IPortfolioStore
 {
     private readonly List<Member> _members =
     [
-        new Member { Id = 1, Slug = "marc",    FullName = "Marc Arthur Gabalfin" },
-        new Member { Id = 2, Slug = "member2", FullName = "Member 2" },
-        new Member { Id = 3, Slug = "member3", FullName = "Member 3" }
+        new Member { Id = 1, Slug = "marc",    FullName = "Marc Arthur Gabalfin", Email = "marc@example.com" },
+        new Member { Id = 2, Slug = "member2", FullName = "Member 2",             Email = "member2@example.com" },
+        new Member { Id = 3, Slug = "member3", FullName = "Member 3",             Email = "member3@example.com" }
     ];
 
     public IReadOnlyList<Member> GetMembers() => _members.AsReadOnly();

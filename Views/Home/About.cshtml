@@ -1,0 +1,31 @@
+@model Portfolio.ViewModels.HomePageVm
+@{
+    ViewData["Title"] = "About";
+}
+
+<section class="intro">
+    <h1>About Us</h1>
+    <p>We are three BSCS students from PUP Manila. This site collects our personal portfolios in one place.</p>
+</section>
+
+<section class="content-block">
+    <h2>The project</h2>
+    <p>Each of us built our portfolio from scratch on our own Git branch, then merged it into <code>main</code> through a pull request. Along the way we practised branching, committing, pushing, resolving merge conflicts and reviewing each other's work.</p>
+</section>
+
+<section class="content-block">
+    <h2>The team</h2>
+    <ul class="plain-list">
+        @foreach (var m in Model.Members)
+        {
+            <li>
+                <a asp-controller="Portfolio" asp-action="Show" asp-route-slug="@m.Slug">@m.FullName</a>
+            </li>
+        }
+    </ul>
+</section>
+
+<section class="content-block">
+    <h2>Built with</h2>
+    <p>ASP.NET Core MVC, C#, HTML, CSS, Git and GitHub.</p>
+</section>

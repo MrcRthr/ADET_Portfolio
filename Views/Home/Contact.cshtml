@@ -1,0 +1,20 @@
+@model Portfolio.ViewModels.HomePageVm
+@{
+    ViewData["Title"] = "Contact";
+}
+
+<section class="intro">
+    <h1>Contact</h1>
+    <p>Want to reach one of us? Send an email or visit our portfolios.</p>
+</section>
+
+<section class="member-list" aria-label="Contact details">
+    @foreach (var m in Model.Members)
+    {
+        <div class="member-card">
+            <span class="member-name">@m.FullName</span>
+            <a class="member-link" href="mailto:@m.Email">@m.Email</a>
+            <a class="member-link" asp-controller="Portfolio" asp-action="Show" asp-route-slug="@m.Slug">Portfolio &rarr;</a>
+        </div>
+    }
+</section>

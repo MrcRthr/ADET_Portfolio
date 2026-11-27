@@ -16,6 +16,14 @@ public class HomeController : Controller
     // GET Home
     public IActionResult Index() => View(new HomePageVm { Members = _store.GetMembers() });
 
+    // GET /about
+    [Route("about")]
+    public IActionResult About() => View(new HomePageVm { Members = _store.GetMembers() });
+
+    // GET /contact
+    [Route("contact")]
+    public IActionResult Contact() => View(new HomePageVm { Members = _store.GetMembers() });
+
     // Error
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()

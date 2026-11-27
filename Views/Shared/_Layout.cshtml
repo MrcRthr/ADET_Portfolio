@@ -1,5 +1,8 @@
 @{
     const string SiteName = "GABALFIN, SANCHEZ, MANAOG";
+    var action = ViewContext.RouteData.Values["action"]?.ToString();
+    var controller = ViewContext.RouteData.Values["controller"]?.ToString();
+    string Active(string a) => controller == "Home" && action == a ? "active" : "";
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +17,9 @@
     <header class="site-header">
         <a class="site-brand" asp-controller="Home" asp-action="Index">@SiteName</a>
         <nav class="site-nav" aria-label="Main">
-            <a asp-controller="Home" asp-action="Index">Home</a>
+            <a class="@Active("Index")" asp-controller="Home" asp-action="Index">Home</a>
+            <a class="@Active("About")" asp-controller="Home" asp-action="About">About</a>
+            <a class="@Active("Contact")" asp-controller="Home" asp-action="Contact">Contact</a>
         </nav>
     </header>
 

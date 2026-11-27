@@ -7,6 +7,8 @@ Personal portfolios of Gabalfin, Sanchez and Manaog (BSCS, PUP Manila), built wi
 | Page       | URL                  | What it shows                          |
 |------------|----------------------|----------------------------------------|
 | Home       | `/`                  | Links to each portfolio  |
+| About      | `/about`             | About the group and project |
+| Contact    | `/contact`           | Each member's email      |
 | Your page  | `/portfolio/<name>`  | Your personal portfolio  |
 
 ## Team workflow
@@ -20,7 +22,7 @@ their portfolio from scratch on their own branch and merges it into `main` with 
 | Member 2             | `portfolio/member2` | `Views/Portfolio/Members/member2.cshtml` |
 | Member 3             | `portfolio/member3` | `Views/Portfolio/Members/member3.cshtml` |
 
-Put your own CSS, images and scripts under `wwwroot/` in a folder named after you (e.g. `wwwroot/marc/`), and update your name in `Services/DemoPortfolioStore.cs`. Anything else is shared, so agree with the group before changing it.
+Put your own CSS, images and scripts under `wwwroot/` in a folder named after you (e.g. `wwwroot/marc/`), and update your name and email in `Services/DemoPortfolioStore.cs`. Anything else is shared, so agree with the group before changing it.
 
 ## Running locally
 
