@@ -4,7 +4,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Services
 builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<IPortfolioStore, DemoPortfolioStore>();
-builder.Services.AddSingleton<IContactStore, DemoContactStore>();
 
 var app = builder.Build();
 

@@ -1,9 +1,7 @@
 @model Portfolio.ViewModels.PortfolioPageVm
 @*
-    member3's personal portfolio.
-    This file is YOURS. Edit freely on branch portfolio/member3.
-    Your styles:  wwwroot/css/portfolio/member3.css
-    Your images:  wwwroot/images/portfolio/member3/
+    member3's personal portfolio. Build it here, on branch portfolio/member3.
+    Your files:  this page, wwwroot/css/portfolio/member3.css, wwwroot/images/portfolio/member3/
 *@
 @{
     var me = Model.Member;
@@ -11,52 +9,12 @@
 }
 
 @section Styles {
-    <link rel="stylesheet" href="~/css/portfolio.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/portfolio/member3.css" asp-append-version="true" />
 }
 
-<article class="pf pf--member3" style="--accent: @me.AccentColor; --label: @me.LabelColor">
-    <header class="pf-hero">
-        <img src="@Url.Content(me.ProfileImage)" alt="@me.FullName" />
-        <div>
-            <h2>@me.FullName</h2>
-            <p>@me.Tagline</p>
-            <p>
-                <a href="mailto:@me.Email">@me.Email</a>
-                @if (!string.IsNullOrWhiteSpace(me.GitHubUrl))
-                {
-                    <text> · </text><a href="@me.GitHubUrl" target="_blank" rel="noopener">GitHub</a>
-                }
-            </p>
-        </div>
-    </header>
-
-    <section class="pf-section">
-        <h3>About me</h3>
+<article class="pf--member3" style="--accent: @me.AccentColor; --label: @me.LabelColor">
+    <section class="page-intro">
+        <h2>@me.FullName</h2>
         <p>lagay kayo dito</p>
     </section>
-
-    <section class="pf-section">
-        <h3>Skills</h3>
-        <ul>
-            <li>lagay kayo dito</li>
-        </ul>
-    </section>
-
-    <section class="pf-section">
-        <h3>Projects</h3>
-        <div class="pf-grid">
-            <div class="pf-tile">
-                <h4>Project title</h4>
-                <p>lagay kayo dito</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="pf-section">
-        <h3>Contact</h3>
-        <p>lagay kayo dito</p>
-    </section>
-
-    <a class="pf-back" asp-controller="Portfolio" asp-action="Index">&larr; All portfolios</a>
 </article>

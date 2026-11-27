@@ -1,52 +1,37 @@
 # Group 6 Portfolio
 
-A group portfolio website for Group 6 (BSCS, PUP Manila), built with ASP.NET Core MVC.
+Personal portfolios of Group 6 (BSCS, PUP Manila), built with ASP.NET Core MVC.
 
 ## Pages
 
-| Page    | What it shows                                        |
-|---------|------------------------------------------------------|
-| Home    | Team intro, member cards, and the featured project   |
-| Team    | Each member's profile, fun fact, and contributions   |
-| Portfolios | Each member's personal portfolio (`/portfolio/<name>`) |
-| Skills  | Languages, frameworks, and tools we use              |
-| Contact | A contact form with validation                       |
+| Page       | URL                  | What it shows                          |
+|------------|----------------------|----------------------------------------|
+| Home       | `/`                  | Group intro and links to each portfolio |
+| Portfolios | `/portfolio`         | A card for each member                 |
+| Your page  | `/portfolio/<name>`  | Your personal portfolio                |
 
-## Tech stack
+## Team workflow
 
-- ASP.NET Core MVC (C#)
-- Razor views, HTML, CSS, JavaScript
-- Git and GitHub
+`main` is the shared base: layout, nav, footer and styling. Each member builds
+their portfolio on their own branch and merges it into `main` with a pull request.
 
-## Project structure
+| Member               | Branch              | Your files |
+|----------------------|---------------------|------------|
+| Marc Arthur Gabalfin | `portfolio/marc`    | `Views/Portfolio/Members/marc.cshtml`, `wwwroot/css/portfolio/marc.css`, `wwwroot/images/portfolio/marc/` |
+| Member 2             | `portfolio/member2` | `Views/Portfolio/Members/member2.cshtml`, `wwwroot/css/portfolio/member2.css`, `wwwroot/images/portfolio/member2/` |
+| Member 3             | `portfolio/member3` | `Views/Portfolio/Members/member3.cshtml`, `wwwroot/css/portfolio/member3.css`, `wwwroot/images/portfolio/member3/` |
 
-```
-Controllers/   Handle requests for each page
-Models/        Data classes (Member, Skill, Project, ContactMessage, ...)
-ViewModels/    Data passed from controllers to views
-Services/      Portfolio and contact data stores
-Views/         Razor pages and the shared layout
-wwwroot/       CSS, JavaScript, and images
-```
+Also update your own entry in `Services/DemoPortfolioStore.cs`. Anything else is shared, so agree with the group before changing it.
 
 ## Running locally
 
 Requires the [.NET SDK](https://dotnet.microsoft.com/download).
 
 ```bash
-git clone https://github.com/MrcRthr/Group6-ADET.git
-cd Group6-ADET
+git clone <repo-url>
+cd <repo-folder>
+git switch portfolio/<name>
 dotnet watch
 ```
 
 The site opens in your browser and reloads when you save changes.
-
-## Team workflow
-
-Each member builds their portfolio on their own branch (`portfolio/<name>`) and merges it into `main` with a pull request.
-
-## Members
-
-- Marc Arthur Gabalfin (Leader, Front-end)
-- Member 2 (Team page)
-- Member 3 (Skills, Contact)

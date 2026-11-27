@@ -17,8 +17,7 @@ public class HomeController : Controller
     public IActionResult Index() => View(new HomePageVm
     {
         Team = _store.GetTeam(),
-        Members = _store.GetMembers(),
-        Project = _store.GetFeaturedProject()
+        Members = _store.GetMembers()
     });
 
     // Error

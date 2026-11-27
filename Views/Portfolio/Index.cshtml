@@ -16,8 +16,7 @@
     @foreach (var m in Model.Members)
     {
         <a class="portfolio-card" asp-action="Show" asp-route-slug="@m.Slug"
-           style="--accent: @m.AccentColor; --label: @m.LabelColor; --tilt: @(m.Tilt / 3)deg">
-            <img class="portfolio-card-photo" src="@Url.Content(m.CardImage)" alt="" />
+           style="--accent: @m.AccentColor; --label: @m.LabelColor">
             <span class="portfolio-card-name">@m.FullName</span>
             <span class="portfolio-card-role">@m.Role</span>
         </a>
