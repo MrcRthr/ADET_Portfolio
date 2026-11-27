@@ -1,0 +1,349 @@
+.marc-page,
+.marc-progress,
+.marc-ripples {
+  --marc-ink: #1f1f1f;
+  --marc-accent: #72d8ec;
+  --marc-label: #7ff4c3;
+  --marc-glow: #b3fc5b;
+  --marc-radius: 10px;
+}
+
+.marc-page {
+  font-family: "Fredoka", system-ui, sans-serif;
+  color: var(--marc-ink);
+}
+
+.marc-page h1,
+.marc-page h2,
+.marc-page p {
+  margin: 0;
+}
+
+/* Scroll progress bar */
+
+.marc-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  width: 100%;
+  height: 5px;
+  background: var(--marc-accent);
+  transform-origin: left;
+  transform: scaleX(var(--marc-scroll, 0));
+}
+
+/* Glowing ripple background */
+
+.marc-ripples {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.marc-ripples span {
+  position: absolute;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 8px 16px 10px var(--marc-glow);
+  animation: marcRipple 15s infinite;
+}
+
+.marc-ripples span:nth-child(1) { width: 900px; height: 900px; left: -450px; bottom: -450px; opacity: 0.25; }
+.marc-ripples span:nth-child(2) { width: 650px; height: 650px; left: -325px; bottom: -325px; opacity: 0.5; }
+.marc-ripples span:nth-child(3) { width: 420px; height: 420px; left: -210px; bottom: -210px; opacity: 0.75; }
+.marc-ripples span:nth-child(4) { width: 200px; height: 200px; left: -100px; bottom: -100px; opacity: 0.9; }
+
+/* Shared bits */
+
+.marc-heading {
+  font-size: clamp(2rem, 6vw, 3rem);
+  line-height: 1.1;
+  margin-bottom: 2rem !important;
+}
+
+.marc-pill {
+  display: inline-block;
+  padding: 0.7rem 1.2rem;
+  border-radius: 200px;
+  background: var(--label);
+  color: var(--marc-ink);
+  font-weight: 500;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.marc-pill:nth-child(odd)  { rotate: -2deg; }
+.marc-pill:nth-child(even) { rotate: 2deg; }
+
+a.marc-pill:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.marc-page section + section {
+  margin-top: 7rem;
+}
+
+/* Scroll reveal: hidden only when JS is running, so the page still works without it */
+
+.marc-js .marc-reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  transition-delay: calc(var(--i, 0) * 70ms);
+}
+
+.marc-js .marc-reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* 1. Hero */
+
+.marc-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 3rem;
+  min-height: 70vh;
+}
+
+.marc-kicker {
+  color: #4a9e2b;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.marc-hero h1 {
+  margin-top: 0.5rem;
+  font-size: clamp(2.6rem, 8vw, 4.5rem);
+  line-height: 1.05;
+}
+
+.marc-hero h1 span {
+  color: var(--marc-accent);
+  -webkit-text-stroke: 2px var(--marc-ink);
+}
+
+.marc-lead {
+  max-width: 36ch;
+  margin-top: 1rem !important;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+/* The card straightens and lifts as you scroll past the hero (--p goes 0 → 1) */
+.marc-card {
+  --p: 0;
+  position: relative;
+  width: 260px;
+  margin: 0;
+  transform: rotate(calc(10deg - 10deg * var(--p))) translateY(calc(-30px * var(--p))) scale(calc(1 + 0.08 * var(--p)));
+}
+
+.marc-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: 10px solid var(--marc-accent);
+  border-radius: var(--marc-radius);
+  background: #f2f2f2;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, calc(0.1 + 0.2 * var(--p)));
+}
+
+.marc-card-label {
+  position: absolute;
+  bottom: -1.2rem;
+  left: -2rem;
+  padding: 0.8rem 1rem;
+  border-radius: 5px;
+  background: var(--marc-label);
+  font-weight: 600;
+  white-space: nowrap;
+  rotate: -6deg;
+}
+
+.marc-scroll-hint {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  translate: -50% 0;
+  color: #888;
+  font-weight: 500;
+  opacity: calc(1 - var(--p, 0) * 3);
+}
+
+.marc-scroll-hint span {
+  display: inline-block;
+  animation: marcBob 1.4s ease-in-out infinite;
+}
+
+/* 2. About */
+
+.marc-about {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  max-width: 760px;
+  margin-top: 9rem !important;
+  border-radius: var(--marc-radius);
+  background: #010101;
+  color: #fff;
+}
+
+.marc-polaroid {
+  position: relative;
+}
+
+.marc-polaroid img {
+  position: absolute;
+  top: -70px;
+  left: -25px;
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border: 6px solid var(--marc-accent);
+  border-radius: 4px;
+  transform: rotate(3deg);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+}
+
+.marc-about-body {
+  padding: 2rem 2rem 2.25rem 0.5rem;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.marc-about-body h2 {
+  font-size: 1.8rem;
+  color: var(--marc-accent);
+}
+
+.marc-role {
+  margin: 0.25rem 0 1rem !important;
+  color: #ccc;
+}
+
+/* 3. Skills */
+
+.marc-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* 4. Contact */
+
+.marc-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  margin: 0;
+  padding: 1rem 0 0;
+  list-style: none;
+}
+
+.marc-contact-card {
+  position: relative;
+  min-width: 260px;
+  padding: 2.25rem 1.5rem 1.5rem;
+  border: 4px solid var(--label);
+  border-radius: var(--marc-radius);
+  background: #fff;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+  rotate: var(--tilt);
+}
+
+.marc-js .marc-contact-card.is-visible:hover {
+  transform: translateY(-6px) scale(1.04);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.22);
+}
+
+.marc-contact-label {
+  position: absolute;
+  top: 0;
+  left: -0.75rem;
+  translate: 0 -50%;
+  padding: 0.6rem 1rem;
+  border-radius: 5px;
+  background: var(--label);
+  font-weight: 600;
+}
+
+.marc-contact-card a {
+  color: var(--marc-ink);
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-underline-offset: 4px;
+}
+
+/* Tablets and phones */
+
+@media (max-width: 760px) {
+  .marc-hero {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    min-height: auto;
+    padding-bottom: 4rem;
+  }
+
+  .marc-card {
+    width: 200px;
+    order: -1;
+  }
+
+  .marc-about {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .marc-polaroid {
+    height: 110px;
+  }
+
+  .marc-polaroid img {
+    left: 50%;
+    top: -100px;
+    width: 180px;
+    height: 180px;
+    transform: translateX(-50%) rotate(3deg);
+  }
+
+  .marc-about-body {
+    padding: 1.25rem;
+  }
+}
+
+/* Animations */
+
+@keyframes marcRipple {
+  0%, 100% { transform: scale(0.8); }
+  50%      { transform: scale(1.2); }
+}
+
+@keyframes marcBob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(6px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marc-ripples span,
+  .marc-scroll-hint span {
+    animation: none;
+  }
+
+  .marc-js .marc-reveal,
+  .marc-card {
+    transition: none;
+    transform: none;
+  }
+}
