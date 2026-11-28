@@ -1,0 +1,135 @@
+@{
+    Layout = null;
+    var memberObj = Model?.Member;
+    string memberName = "Nini";
+    string? memberEmail = null;
+
+    if (memberObj != null)
+    {
+        try
+        {
+            memberName = (string?)memberObj.FullName
+                      ?? (string?)memberObj.DisplayName
+                      ?? (string?)memberObj.Slug
+                      ?? "Nini";
+        }
+        catch (Microsoft.CSharp.RuntimeBinder.RuntimeBinderException)
+        {
+            memberName = "Nini";
+        }
+
+        try
+        {
+            memberEmail = (string?)memberObj.Email;
+        }
+        catch (Microsoft.CSharp.RuntimeBinder.RuntimeBinderException)
+        {
+            memberEmail = null;
+        }
+    }
+
+    var memberRole = "Aspiring UI/UX Designer";
+    var memberBio = "Crafting clean interfaces & intuitive user journeys. Currently leveling up in Figma.";
+    var displayEmail = memberEmail ?? "sanchezkim333@gmail.com";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@memberName — Portfolio</title>
+    <link rel="stylesheet" href="~/member3/style.css" />
+</head>
+<body>
+    <div class="space-bg" aria-hidden="true"></div>
+
+    <header class="site-nav-wrap">
+        <nav class="navbar" aria-label="Primary navigation">
+            <a class="brand" href="#home">
+                <span class="brand-icon" aria-hidden="true">◈</span>
+                <span>Kim Nicole Burton Sanchez</span>
+            </a>
+
+            <button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+                ☰
+            </button>
+
+            <ul class="nav-links">
+                <li><a class="active" href="#home">Home</a></li>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+   <main id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                Get to know <span class="hover-swap" data-hover="Mikmik">Nini</span>
+            </h1>
+            <p class="hero-subtitle">@memberRole</p>
+
+            <div class="social-row">
+                <a class="social-btn" href="#contact" aria-label="Email @memberName" title="Email">
+                    ✉
+                </a>
+            </div>
+
+            <a class="cta-pill" href="#about">About Me</a>
+        </div>
+
+        <div class="hero-visual">
+            <div class="portrait-frame">
+                <img src="~/member3/images/mikmik.jpg" alt="@memberName portrait" />
+            </div>
+        </div>
+    </main>
+
+    <section id="about" class="section-block">
+        <h2>About Me</h2>
+        <p>@memberBio</p>
+    </section>
+
+    <section id="skills" class="section-block">
+        <h2>Skills</h2>
+        <div class="chip-grid">
+            <span class="chip">ASP.NET Core MVC</span>
+            <span class="chip">C#</span>
+            <span class="chip">HTML5 &amp; CSS3</span>
+            <span class="chip">JavaScript</span>
+        </div>
+    </section>
+
+    <section id="education" class="section-block">
+        <h2>Education</h2>
+        <div class="info-card">
+            <h3>BS in Computer Science</h3>
+            <p>Polytechnic University of the Philippines — Manila</p>
+        </div>
+    </section>
+
+    <section id="projects" class="section-block">
+        <h2>Projects</h2>
+        <div class="card-grid">
+            <article class="info-card">
+                <h3>MVC Portfolio Module</h3>
+                <p>Custom member portfolio view integrated with ASP.NET Core MVC routing and store data.</p>
+            </article>
+            <article class="info-card">
+                <h3>Web UI Experiments</h3>
+                <p>Responsive layouts, custom navigation, and interactive front-end components.</p>
+            </article>
+        </div>
+    </section>
+
+    <section id="contact" class="section-block">
+        <h2>Contact</h2>
+        <p>Reach out at <a href="mailto:@memberEmail">@memberEmail</a></p>
+    </section>
+
+    <script src="~/member3/script.js"></script>
+</body>
+</html>
