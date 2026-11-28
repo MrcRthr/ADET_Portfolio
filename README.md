@@ -19,7 +19,7 @@ their portfolio from scratch on their own branch and merges it into `main` with 
 | Member               | Branch              | Your page |
 |----------------------|---------------------|-----------|
 | Marc Arthur Gabalfin | `portfolio/marc`    | `Views/Portfolio/Members/marc.cshtml` |
-| Member 2             | `portfolio/member2` | `Views/Portfolio/Members/member2.cshtml` |
+| Isabella Nicole Manaog             | `portfolio/member2` | `Views/Portfolio/Members/member2.cshtml` |
 | Member 3             | `portfolio/member3` | `Views/Portfolio/Members/member3.cshtml` |
 
 Put your own CSS, images and scripts under `wwwroot/` in a folder named after you (e.g. `wwwroot/marc/`), and update your name and email in `Services/DemoPortfolioStore.cs`. Anything else is shared, so agree with the group before changing it.
